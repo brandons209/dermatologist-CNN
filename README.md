@@ -6,7 +6,8 @@ I made this project based on the project idea in udacity's deep learning nanodeg
 The objective of this model is to determine if a supplied image of a skin aliment is either melanoma, nevus, or seborrheic keratosis based on nothing but the image itself.
 
 ### Libraries Used
-I used Keras with the Tensorflow back end to train this model. I also use image processing tools from Keras for processing the data. And of course numpy.
+I used Keras with the Tensorflow back end to train this model. I also use image processing tools from Keras for processing the data. And of course numpy. **Make sure to install the 
+required libraries in requirements.txt!**
 
 ### Performance
 Right now, by fine tuning the weights of Google's InceptionV3 network with my own classifier fully connected layers, and training on 2500 images, I am able to get about 60 percent accuracy. With this, I also augmented my data by rotation images by varying degrees using Keras' ImageDataGenerator. However, validation loss seems to stop decreasing after around 10-15 epochs, so with more fine tuning of the parameters and the fully connected classifier layers, I can get the accuracy closer to 70 percent.
