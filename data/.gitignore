@@ -1,0 +1,3 @@
+#ignore numpy files and not ignore this file
+!.gitignore
+*.npy

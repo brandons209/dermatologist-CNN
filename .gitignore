@@ -1,19 +1,2 @@
+#ignore pychache
 __pycache__/
-
-data/test/melanoma/*
-data/test/nevus/*
-data/test/seborrheic_keratosis/*
-
-data/train/melanoma/*
-data/train/nevus/*
-data/train/seborrheic_keratosis/*
-
-data/valid/melanoma/*
-data/valid/nevus/*
-data/valid/seborrheic_keratosis/*
-
-data/*.npy
-
-saved_models/*
-saved_weights/*
-tensorboard_logs/*
