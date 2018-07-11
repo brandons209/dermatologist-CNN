@@ -2,7 +2,7 @@
 I made this project based on the project idea in udacity's deep learning nanodegree, however I heavily expanded on the problem.
 
 [LICENSE](LICENSE)
-### Objective:
+### Objective
 The objective of this model is to determine if a supplied image of a skin aliment is either melanoma, nevus, or seborrheic keratosis based on nothing but the image itself.
 
 ### Libraries Used
