@@ -37,6 +37,7 @@ I believe trying the Inception ResNet V2 model and fine tuning it might give bet
   * Some of the data initially provided has those drawn circles and markers in them, so for better results you can look through and delete them. Took me only a few minutes with file previews on.
 
 4. Run the model.
+
   1. Open preprocess_data.py and change proccesses_num to the number of cores you are willing to give to process the data. This can take some time on one core, so I left it at 4. The higher the number the faster processing will go.
   2. Change image size if you are going to be changing the transferred network, otherwise leave it the same.
   3. Run cnn_network_skin_cancer.py and enter 'y' to pre-proccess the data.
