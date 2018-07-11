@@ -6,7 +6,7 @@ I made this project based on the project idea in udacity's deep learning nanodeg
 The objective of this model is to determine if a supplied image of a skin aliment is either melanoma, nevus, or seborrheic keratosis based on nothing but the image itself.
 
 ### Libraries Used
-I used Keras with the Tensorflow back end to train this model. I also use image processing tools from Keras for processing the data. And of course numpy. **Make sure to install the 
+I used Keras with the Tensorflow back end to train this model. I also use image processing tools from Keras for processing the data. And of course numpy. **Make sure to install the
 required libraries in requirements.txt!**
 
 ### Performance
@@ -15,7 +15,11 @@ Right now, by fine tuning the weights of Google's InceptionV3 network with my ow
 I believe trying the Inception ResNet V2 model and fine tuning it might give better results, however with the model being much more complex than InceptionV3 I have not tried training it. A good idea I have that I will try is just fine tune the top few "blocks" of the network instead of the entire network. This could yield better results without huge computation times.
 
 ### Running this model
-1. Download data sets (provided by udacity):
+1. Download data set (my own):
+  * [All three data sets, with more data than udacity and scrubbed of bad data](https://drive.google.com/file/d/1d1IC_MQCiIYdwVTN4_-LwsOUf5X5C4kc/view?usp=sharing)
+
+
+2. Download data sets (provided by udacity):
 
   * [Training Set](https://s3-us-west-1.amazonaws.com/udacity-dlnfd/datasets/skin-cancer/train.zip)
 
@@ -25,7 +29,7 @@ I believe trying the Inception ResNet V2 model and fine tuning it might give bet
 
 2. Unzip each data set into their respective directory in the data folder. Leave them in the three separate folders (melanoma, nevus, seborrheic keratosis).
 
-3. (Optional) Clean data and add more images.
+3. (Optional) Clean data and add more images (if you don't use my uploaded dataset).
   * More images for each category can be found at the [ISIC Archive](https://isic-archive.com/#images).
 
   * Most of the images found on that website don't appear in the initially download data, with the exception of seborrheic keratosis, since there are few images in the archive for it. So just make sure you are not copying the same data between sets. Also, for better accuracy try to include pictures without other objects in it, like drawn circles or arrows, or blue/yellow markers next to the lesion for size.
