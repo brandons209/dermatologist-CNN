@@ -10,7 +10,7 @@ I used Keras with the Tensorflow back end to train this model. I also use image 
 required libraries in requirements.txt!**
 
 ### Performance
-Right now, by fine tuning the weights of Google's InceptionV3 network with my own classifier fully connected layers, and training on 2500 images, I am able to get about 60 percent accuracy. With this, I also augmented my data by rotation images by varying degrees using Keras' ImageDataGenerator. However, validation loss seems to stop decreasing after around 10-15 epochs, so with more fine tuning of the parameters and the fully connected classifier layers, I can get the accuracy closer to 70 percent.
+Right now, by fine tuning the weights of Google's InceptionV3 network with my own classifier fully connected layers, and training on 2500 images, I am able to get about 77 percent accuracy. With this, I also augmented my data by rotation images by varying degrees using Keras' ImageDataGenerator. With more fine tuning I was able to increase accuracy by 17 percent to get 77 percent from 60 percent! I will continue to hopefully hit 90 percent accuracy. This new model is included.
 
 I believe trying the Inception ResNet V2 model and fine tuning it might give better results, however with the model being much more complex than InceptionV3 I have not tried training it. A good idea I have that I will try is just fine tune the top few "blocks" of the network instead of the entire network. This could yield better results without huge computation times.
 
