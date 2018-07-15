@@ -55,6 +55,6 @@ python test_model.py /path/to/image/file /path/to/saved/model
 ```
 
 ### Todo
-Right now, I am trying to get TensorBoard callback to work when training, so model training can be visualized with TensorBoard. However, I am getting a ValueError because the returned gradients from the model are None. I believe this may be because of freezing the layers, but I am not sure.
+Right now, I am trying to get TensorBoard callback to work when training, so model training can be visualized with TensorBoard. However, I am getting a ValueError because the returned gradients from the model are None. Doesn't seem to be an issue with freezing layers, I really cannot find anything on this issue. Still working on it.
 
 I hope you can get better results than I! You can speed up training if you increase batch size and epochs to have smaller batch sizes per epoch. Good luck!
