@@ -81,9 +81,9 @@ model_builder = inception_transferred.output
 model_builder = GlobalAveragePooling2D()(model_builder)
 
 #classifier fully connected layers:
-model_builder = Dense(256, activation='relu')(model_builder)
-model_builder = Dropout(0.3)(model_builder)
-model_builder = Dense(128, activation='relu')(model_builder)
+model_builder = Dense(328, activation='relu')(model_builder)
+model_builder = Dropout(0.4)(model_builder)
+model_builder = Dense(150, activation='relu')(model_builder)
 model_builder = Dropout(0.3)(model_builder)
 
 #predictions layer, 3 nodes for our 3 classes:
@@ -109,13 +109,14 @@ input("Press enter to continue training top layers of model...")
 checkpointer = ModelCheckpoint(filepath='saved_weights/inception.model.top.layers.only.best.hdf5', verbose=1, save_best_only=True)
 #can run tensorboard --logdir=tensorboard_logs/ to be able to see logs. each run is stored in a folder named for its time ran, so you can compare multiple runs!
 #TODO: fix issue with trying to display histograms of weights, where gradients return as None when tensorboard trys to calculate them. disabling tensorboard for now
-#ten_board = TensorBoard(log_dir='tensorboard_logs/{}'.format(time.time()), write_images=True)
+start_time = time.strftime("%a_%b_%d_%Y_%H:%M", time.localtime())
+ten_board = TensorBoard(log_dir='tensorboard_logs/{}_classifier'.format(start_time), write_images=True)
 
 #reduce lr on plateau can allow better training results by dynamically reducing the learning rate when val loss does not improve
-reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=5, verbose=1, min_lr=0.00000000001)
+reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=3, verbose=1, min_lr=0.00000000001)
 model.fit_generator(aug_gen.flow(train_images, train_targets, batch_size=batch_size),
                     steps_per_epoch=train_images.shape[0] // batch_size,
-                    epochs=epochs, verbose=1, callbacks=[checkpointer, reduce_lr],
+                    epochs=epochs, verbose=1, callbacks=[checkpointer, reduce_lr, ten_board],
                     validation_data=aug_gen_valid.flow(valid_images, valid_targets, batch_size=batch_size),
                     validation_steps=valid_images.shape[0] // batch_size,
                     use_multiprocessing=True)
@@ -132,7 +133,7 @@ for layer in model.layers[311:]:
 
 ### Fine tune model
 #compile model using rmsprop optimizer, may try different learnrate.
-model.compile(optimizer=opt.RMSprop(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=opt.RMSprop(lr=0.00001), loss='categorical_crossentropy', metrics=['accuracy'])
 print_trainable_params()
 
 #train top layers of model using augmented data:
@@ -140,9 +141,10 @@ epochs = 20
 batch_size = 5
 input("Press enter to continue training inception layers of model...")
 checkpointer = ModelCheckpoint(filepath='saved_weights/inception.model.inception.layers.only.best.hdf5', verbose=1, save_best_only=True)
+ten_board = TensorBoard(log_dir='tensorboard_logs/{}_inception'.format(start_time), write_images=True)
 model.fit_generator(aug_gen.flow(train_images, train_targets, batch_size=batch_size),
                     steps_per_epoch=train_images.shape[0] // batch_size,
-                    epochs=epochs, verbose=1, callbacks=[checkpointer, reduce_lr],
+                    epochs=epochs, verbose=1, callbacks=[checkpointer, reduce_lr, ten_board],
                     validation_data=aug_gen_valid.flow(valid_images, valid_targets, batch_size=batch_size),
                     validation_steps=valid_images.shape[0] // batch_size,
                     use_multiprocessing=True)
