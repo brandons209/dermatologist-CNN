@@ -47,7 +47,7 @@ I believe trying the Inception ResNet V2 model and fine tuning it might give bet
 5. Test images.
   * You can test individual images by running test_model.py
   * It will return the name of the determined disease.
-  * **This requires a saved model, which one is saved by running the steps above completely. I do provide my own trained model for testing if you want.**
+  * **This requires a saved model, which one is saved by running the steps above completely. I do provide my own trained model for testing if you want.** Download the model [here](https://drive.google.com/open?id=1fKDZlLQDFYyhVbSl2HX3Mv-pKPc_4FJH)
   * Models are saved under the saved_models directory.
   * Usage is:
 
