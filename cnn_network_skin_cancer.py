@@ -5,7 +5,7 @@ import time
 
 #pre-processing
 from keras.preprocessing.image import ImageDataGenerator
-from preprocess_data import load_image_path_set, load_images, save_images_array, load_images_and_labels_array
+import preprocess_data as preprocess
 
 #model imports
 from keras.layers import Conv2D, MaxPooling2D, GlobalAveragePooling2D
@@ -32,31 +32,31 @@ answer = input("Would you like to pre-process the data? If this is your first ti
 if answer == 'y':
     #load in image paths and labels
     print("Loading in image paths and their labels...")
-    test_images, test_targets = load_image_path_set('test')
-    valid_images, valid_targets = load_image_path_set('valid')
-    train_images, train_targets = load_image_path_set('train')
+    test_images, test_targets = preprocess.load_image_path_set('test')
+    valid_images, valid_targets = preprocess.load_image_path_set('valid')
+    train_images, train_targets = preprocess.load_image_path_set('train')
 
     #load image values from paths, then convert img values 0-255 to values between 0 and 1
     print("Loading test images...")
-    test_images = load_images(test_images).astype('float32')/255
+    test_images = preprocess.load_images(test_images).astype('float32')/255
     print("Loading validation images...")
-    valid_images = load_images(valid_images).astype('float32')/255
+    valid_images = preprocess.load_images(valid_images).astype('float32')/255
     print("Loading train images...")
-    train_images = load_images(train_images).astype('float32')/255
+    train_images = preprocess.load_images(train_images).astype('float32')/255
 
     print("Saving processed data...")
-    save_images_array(test_images, 'test_images.npy')
-    save_images_array(test_targets, 'test_targets.npy')
-    save_images_array(valid_images, 'valid_images.npy')
-    save_images_array(valid_targets, 'valid_targets.npy')
-    save_images_array(train_images, 'train_images.npy')
-    save_images_array(train_targets, 'train_targets.npy')
+    preprocess.save_images_array(test_images, 'test_images.npy')
+    preprocess.save_images_array(test_targets, 'test_targets.npy')
+    preprocess.save_images_array(valid_images, 'valid_images.npy')
+    preprocess.save_images_array(valid_targets, 'valid_targets.npy')
+    preprocess.save_images_array(train_images, 'train_images.npy')
+    preprocess.save_images_array(train_targets, 'train_targets.npy')
 
 elif answer == 'n':
     print("Loading data from numpy files...")
-    test_images, test_targets = load_images_and_labels_array('test')
-    valid_images, valid_targets = load_images_and_labels_array('valid')
-    train_images, train_targets = load_images_and_labels_array('train')
+    test_images, test_targets = preprocess.load_images_and_labels_array('test')
+    valid_images, valid_targets = preprocess.load_images_and_labels_array('valid')
+    train_images, train_targets = preprocess.load_images_and_labels_array('train')
 else:
     print("Please choose y or n")
     sys.exit(1)
