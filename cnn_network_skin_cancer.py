@@ -108,7 +108,7 @@ batch_size = 5
 input("Press enter to continue training top layers of model...")
 checkpointer = ModelCheckpoint(filepath='saved_weights/inception.model.top.layers.only.best.hdf5', verbose=1, save_best_only=True)
 #can run tensorboard --logdir=tensorboard_logs/ to be able to see logs. each run is stored in a folder named for its time ran, so you can compare multiple runs!
-#TODO: fix issue with trying to display histograms of weights, where gradients return as None when tensorboard trys to calculate them. disabling tensorboard for now
+#TODO: fix issue with trying to display histograms of weights, where gradients return as None when tensorboard trys to calculate them.
 start_time = time.strftime("%a_%b_%d_%Y_%H:%M", time.localtime())
 ten_board = TensorBoard(log_dir='tensorboard_logs/{}_classifier'.format(start_time), write_images=True)
 
