@@ -42,8 +42,7 @@ def process_single_image(img_path):
     img = image_processor.load_img(img_path, target_size=(img_size,img_size))
     return np.expand_dims(image_processor.img_to_array(img), axis=0)
 
-#takes an array of image paths and returns list of values of image in a 3D tensor (img_size, img_size, 3)
-#use multiple processes since image conversion takes a while on a single core.
+#takes an array of image paths and returns list of values of image in a 3D tensor (num_of_images, img_size, img_size, 3)
 def image_processor_job(img_paths_short):
 
     images_short = []
@@ -53,6 +52,8 @@ def image_processor_job(img_paths_short):
         images_short.append(img_arr)
     return images_short
 
+#loads images from image paths, resizes them, and then turns them into numpy arrays.
+#use multiple processes since image conversion takes a while on a single core.
 def load_images(img_paths):
     pool = Pool(processes=proccesses_num)
 
@@ -74,6 +75,7 @@ def load_images(img_paths):
 def save_images_array(images, filename):
     dir = 'data/' + filename
     np.save(dir, images)
+
 #load data from certain set as read only
 def load_images_and_labels_array(set_type):
     images, targets = 'data/' + set_type + '_images.npy', 'data/' + set_type +'_targets.npy'
